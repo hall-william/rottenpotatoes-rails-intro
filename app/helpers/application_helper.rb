@@ -1,6 +1,9 @@
 module ApplicationHelper
-    def sortable(column, title = nil)
-        title ||= column.titleize
-        link_to title, {:sort => column}
+    def helper_method(field)
+        if(params[:sort].to_s == field)
+            return 'hilite'
+        else
+            return nil
+        end
     end
 end

@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-  helper_method :sort_column
   
   def movie_params
     params.require(:movie).permit(:title, :rating, :description, :release_date)
@@ -12,7 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order(sort_column)
+    @movies = Movie.order(params[:sort])
   end
 
   def new
@@ -43,9 +42,4 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
-  private
-  
-  def sort_column
-    params[:sort] || "title"
-  end
 end
